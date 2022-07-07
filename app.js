@@ -9,6 +9,7 @@ const encrypt = require("mongoose-encryption");
 //skapa instans av server
 const app = express();
 
+
 //config av server
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -24,8 +25,7 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
-//Add encrytion ot the schema
-
+//Add encrytion on the schema to make password not readable in the usesr db
 userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] });
 
 //User model
